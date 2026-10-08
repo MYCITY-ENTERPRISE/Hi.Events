@@ -37,6 +37,7 @@ import {trackEvent, AnalyticsEvents} from "../../../../utilites/analytics.ts";
 import {clearWaitlistJoinedForEvent} from "../../../../hooks/useWaitlistJoined.ts";
 import {useCheckoutPrefill, CheckoutPrefill} from "../../../../hooks/useCheckoutPrefill.ts";
 import {UserGeneratedContent} from "../../../common/UserGeneratedContent";
+import {getMetaAdTrackingContext} from "../../../../utilites/trackingPixels/metaAdTracking.ts";
 
 const LoadingSkeleton = () =>
     (
@@ -302,7 +303,10 @@ export const CollectInformation = () => {
     }
 
     const handleSubmit = (values: any) => {
-        mutation.mutate(values);
+        mutation.mutate({
+            ...values,
+            ad_tracking: getMetaAdTrackingContext(event?.organizer?.settings?.tracking_pixels),
+        });
     };
 
     useEffect(() => {

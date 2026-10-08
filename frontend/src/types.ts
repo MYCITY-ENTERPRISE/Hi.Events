@@ -726,6 +726,8 @@ export interface OrganizerSettings {
     allow_search_engine_indexing?: boolean;
     tracking_pixels?: TrackingPixelConfig[];
     tracking_consent_acknowledged?: boolean;
+    meta_conversions_api_configured?: boolean;
+    meta_conversions_api_access_token?: string | null;
     google_wallet_enabled?: boolean;
     apple_wallet_enabled?: boolean;
     wallet_pass_settings?: WalletPassSettings;

@@ -141,4 +141,24 @@ class PartialUpdateOrganizerSettingsRequestTest extends TestCase
 
         $this->assertFalse($validator->errors()->has('tracking_pixels.0.provider'));
     }
+
+    public function test_meta_conversions_api_access_token_accepts_a_meta_token(): void
+    {
+        $validator = Validator::make(
+            ['meta_conversions_api_access_token' => 'EAAGm0PX4ZCpsBAKZCZBabc123'],
+            PartialUpdateOrganizerSettingsRequest::rules()
+        );
+
+        $this->assertFalse($validator->errors()->has('meta_conversions_api_access_token'));
+    }
+
+    public function test_meta_conversions_api_access_token_rejects_unexpected_characters(): void
+    {
+        $validator = Validator::make(
+            ['meta_conversions_api_access_token' => 'EAA token<script>'],
+            PartialUpdateOrganizerSettingsRequest::rules()
+        );
+
+        $this->assertTrue($validator->errors()->has('meta_conversions_api_access_token'));
+    }
 }

@@ -28,6 +28,7 @@ use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderProductDataDTO
 use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
+use HiEvents\Services\Domain\Tracking\DTO\AdTrackingContextDTO;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
@@ -150,6 +151,46 @@ class CompleteOrderHandlerTest extends TestCase
         $this->completeOrderHandler->handle($orderShortId, $orderData);
 
         $this->assertTrue(true);
+    }
+
+    public function test_handle_stores_the_ad_tracking_context_on_the_order(): void
+    {
+        $orderShortId = 'ABC123';
+        $baseOrderData = $this->createMockCompleteOrderDTO();
+        $orderData = new CompleteOrderDTO(
+            order: $baseOrderData->order,
+            products: $baseOrderData->products,
+            event_id: 1,
+            ad_tracking_context: new AdTrackingContextDTO(
+                fbp: 'fb.1.1700000000000.123456',
+                fbc: null,
+                event_source_url: 'https://outkzt.events/checkout/1/ABC123/details',
+                client_ip_address: '203.0.113.7',
+                client_user_agent: 'Mozilla/5.0',
+            ),
+        );
+
+        $this->orderRepository->shouldReceive('findByShortId')->with($orderShortId)->andReturn($this->createMockOrder());
+        $this->orderRepository->shouldReceive('loadRelation')->andReturnSelf();
+        $this->orderRepository
+            ->shouldReceive('updateFromArray')
+            ->once()
+            ->with(1, Mockery::on(fn (array $attributes) => $attributes['ad_tracking_context'] === [
+                'fbp' => 'fb.1.1700000000000.123456',
+                'fbc' => null,
+                'event_source_url' => 'https://outkzt.events/checkout/1/ABC123/details',
+                'client_ip_address' => '203.0.113.7',
+                'client_user_agent' => 'Mozilla/5.0',
+            ]))
+            ->andReturn($this->createMockOrder());
+
+        $this->productPriceRepository->shouldReceive('findWhereIn')->andReturn(new Collection([$this->createMockProductPrice()]));
+        $this->attendeeRepository->shouldReceive('insert')->andReturn(true);
+        $this->attendeeRepository->shouldReceive('findWhereIn')->andReturn(new Collection([$this->createMockAttendee()]));
+        $this->productQuantityUpdateService->shouldReceive('updateQuantitiesFromOrder');
+        $this->eventSettingsRepository->shouldReceive('findFirstWhere')->andReturn($this->createMockEventSetting());
+
+        $this->completeOrderHandler->handle($orderShortId, $orderData);
     }
 
     public function test_handle_stores_unwrapped_order_answers_and_skips_blank_ones(): void

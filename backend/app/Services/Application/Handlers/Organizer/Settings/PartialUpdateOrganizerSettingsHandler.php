@@ -8,6 +8,7 @@ use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\PartialUpdateOrganizerSettingsDTO;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
+use Illuminate\Contracts\Encryption\Encrypter;
 
 class PartialUpdateOrganizerSettingsHandler
 {
@@ -15,6 +16,7 @@ class PartialUpdateOrganizerSettingsHandler
         private readonly OrganizerSettingsRepositoryInterface $organizerSettingsRepository,
         private readonly OrganizerRepositoryInterface $organizerRepository,
         private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
+        private readonly Encrypter $encrypter,
     ) {}
 
     public function handle(PartialUpdateOrganizerSettingsDTO $dto): OrganizerSettingDomainObject
@@ -89,6 +91,7 @@ class PartialUpdateOrganizerSettingsHandler
 
             'tracking_pixels' => $dto->getProvided('trackingPixels', $organizerSettings->getTrackingPixels()),
             'tracking_consent_acknowledged' => $dto->getProvided('trackingConsentAcknowledged', $organizerSettings->getTrackingConsentAcknowledged()),
+            'meta_conversions_api_access_token' => $this->resolveMetaConversionsApiAccessToken($dto, $organizerSettings),
         ], [
             'organizer_id' => $dto->organizerId,
             'id' => $organizerSettings->getId(),
@@ -101,6 +104,21 @@ class PartialUpdateOrganizerSettingsHandler
         }
 
         return $updatedSettings;
+    }
+
+    private function resolveMetaConversionsApiAccessToken(
+        PartialUpdateOrganizerSettingsDTO $dto,
+        OrganizerSettingDomainObject $existingSettings,
+    ): ?string {
+        if (! $dto->wasProvided('metaConversionsApiAccessToken')) {
+            return $existingSettings->getMetaConversionsApiAccessToken();
+        }
+
+        if ($dto->metaConversionsApiAccessToken === null) {
+            return null;
+        }
+
+        return $this->encrypter->encryptString($dto->metaConversionsApiAccessToken);
     }
 
     private function walletBrandingChanged(

@@ -54,12 +54,18 @@ export const facebookPixelPlugin: TrackingPixelPlugin = {
             'Purchase': 'Purchase',
         };
         const fbEvent = eventMap[data.eventName] || data.eventName;
-        fbq('track', fbEvent, {
-            value: data.value || 0,
-            currency: data.currency || 'USD',
+        const parameters = {
+            value: data.value,
+            currency: data.currency,
             content_name: data.contentName,
             content_ids: data.contentId ? [String(data.contentId)] : undefined,
-        });
+        };
+
+        if (data.transactionId) {
+            fbq('track', fbEvent, parameters, {eventID: String(data.transactionId)});
+        } else {
+            fbq('track', fbEvent, parameters);
+        }
     },
 
     cleanup() {

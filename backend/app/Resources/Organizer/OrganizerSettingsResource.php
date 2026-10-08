@@ -33,6 +33,7 @@ class OrganizerSettingsResource extends BaseResource
             'wallet_pass_settings' => $this->getWalletPassSettings(),
             'tracking_pixels' => $this->getTrackingPixels(),
             'tracking_consent_acknowledged' => $this->getTrackingConsentAcknowledged(),
+            'meta_conversions_api_configured' => $this->getMetaConversionsApiAccessToken() !== null,
         ];
     }
 }

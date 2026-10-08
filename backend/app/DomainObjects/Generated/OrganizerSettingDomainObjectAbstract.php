@@ -34,6 +34,7 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     final public const GOOGLE_WALLET_ENABLED = 'google_wallet_enabled';
     final public const APPLE_WALLET_ENABLED = 'apple_wallet_enabled';
     final public const WALLET_PASS_SETTINGS = 'wallet_pass_settings';
+    final public const META_CONVERSIONS_API_ACCESS_TOKEN = 'meta_conversions_api_access_token';
 
     protected int $id;
     protected int $organizer_id;
@@ -59,6 +60,7 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     protected bool $google_wallet_enabled = false;
     protected bool $apple_wallet_enabled = false;
     protected array|string|null $wallet_pass_settings = null;
+    protected ?string $meta_conversions_api_access_token = null;
 
     public function toArray(): array
     {
@@ -87,6 +89,7 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
                     'google_wallet_enabled' => $this->google_wallet_enabled ?? null,
                     'apple_wallet_enabled' => $this->apple_wallet_enabled ?? null,
                     'wallet_pass_settings' => $this->wallet_pass_settings ?? null,
+                    'meta_conversions_api_access_token' => $this->meta_conversions_api_access_token ?? null,
                 ];
     }
 
@@ -353,5 +356,16 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     public function getWalletPassSettings(): array|string|null
     {
         return $this->wallet_pass_settings;
+    }
+
+    public function setMetaConversionsApiAccessToken(?string $meta_conversions_api_access_token): self
+    {
+        $this->meta_conversions_api_access_token = $meta_conversions_api_access_token;
+        return $this;
+    }
+
+    public function getMetaConversionsApiAccessToken(): ?string
+    {
+        return $this->meta_conversions_api_access_token;
     }
 }

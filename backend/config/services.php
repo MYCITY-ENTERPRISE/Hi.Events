@@ -31,6 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'meta' => [
+        'graph_api_base_url' => env('META_GRAPH_API_BASE_URL', 'https://graph.facebook.com'),
+        'graph_api_version' => env('META_GRAPH_API_VERSION', 'v23.0'),
+        'request_timeout_seconds' => (int) env('META_CONVERSIONS_API_REQUEST_TIMEOUT', 10),
+    ],
+
     'stripe' => [
         'secret_key' => env('STRIPE_SECRET_KEY'),
         'public_key' => env('STRIPE_PUBLIC_KEY'),

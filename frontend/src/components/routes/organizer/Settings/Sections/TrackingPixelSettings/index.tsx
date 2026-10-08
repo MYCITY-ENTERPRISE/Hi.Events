@@ -6,7 +6,7 @@ import {showSuccess} from "../../../../../../utilites/notifications.tsx";
 import {t} from "@lingui/macro";
 import {Card} from "../../../../../common/Card";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
-import {Button, Checkbox, Switch, Text, TextInput} from "@mantine/core";
+import {Button, Checkbox, PasswordInput, Switch, Text, TextInput} from "@mantine/core";
 import {Callout} from "../../../../../common/Callout";
 import {
     IconBrandFacebook,
@@ -94,6 +94,7 @@ function formStateToPixels(state: Record<string, { enabled: boolean; pixel_id: s
 }
 
 const GTM_PROVIDER_KEY = 'google_tag_manager';
+const FACEBOOK_PROVIDER_KEY = 'facebook_pixel';
 
 export const TrackingPixelSettings = () => {
     const {organizerId} = useParams();
@@ -109,18 +110,26 @@ export const TrackingPixelSettings = () => {
     const form = useForm<{
         pixels: Record<string, { enabled: boolean; pixel_id: string }>;
         tracking_consent_acknowledged: boolean;
+        meta_conversions_api_access_token: string;
+        remove_meta_conversions_api_access_token: boolean;
     }>({
         initialValues: {
             pixels: pixelsToFormState(undefined),
             tracking_consent_acknowledged: false,
+            meta_conversions_api_access_token: '',
+            remove_meta_conversions_api_access_token: false,
         },
     });
+
+    const isMetaConversionsApiConfigured = !!organizerSettingsQuery.data?.meta_conversions_api_configured;
 
     useEffect(() => {
         if (organizerSettingsQuery?.isFetched && organizerSettingsQuery?.data) {
             form.setValues({
                 pixels: pixelsToFormState(organizerSettingsQuery.data.tracking_pixels),
                 tracking_consent_acknowledged: organizerSettingsQuery.data.tracking_consent_acknowledged || false,
+                meta_conversions_api_access_token: '',
+                remove_meta_conversions_api_access_token: false,
             });
         }
     }, [organizerSettingsQuery.isFetched]);
@@ -148,14 +157,24 @@ export const TrackingPixelSettings = () => {
 
         if (hasErrors) return;
 
+        const metaAccessToken = values.meta_conversions_api_access_token.trim();
+        const metaAccessTokenUpdate = metaAccessToken !== ''
+            ? {meta_conversions_api_access_token: metaAccessToken}
+            : values.remove_meta_conversions_api_access_token
+                ? {meta_conversions_api_access_token: null}
+                : {};
+
         updateMutation.mutate({
             organizerSettings: {
                 tracking_pixels: trackingPixels,
                 tracking_consent_acknowledged: values.tracking_consent_acknowledged,
+                ...metaAccessTokenUpdate,
             },
             organizerId: organizerId,
         }, {
             onSuccess: () => {
+                form.setFieldValue('meta_conversions_api_access_token', '');
+                form.setFieldValue('remove_meta_conversions_api_access_token', false);
                 showSuccess(t`Successfully Updated Tracking Settings`);
             },
             onError: (error) => {
@@ -235,6 +254,28 @@ export const TrackingPixelSettings = () => {
                                             },
                                         }}
                                     />
+                                    {provider.key === FACEBOOK_PROVIDER_KEY && hasValue && (
+                                        <div style={{marginTop: '12px'}}>
+                                            <PasswordInput
+                                                {...form.getInputProps('meta_conversions_api_access_token')}
+                                                label={t`Conversions API access token (optional)`}
+                                                description={isMetaConversionsApiConfigured
+                                                    ? t`A token is saved. Enter a new token to replace it.`
+                                                    : t`Also sends completed purchases to Meta from our server, so ad blockers and browser privacy settings don't hide them. Generate the token in Meta Events Manager under your pixel's settings.`}
+                                                placeholder={isMetaConversionsApiConfigured ? '••••••••••••' : undefined}
+                                                size="sm"
+                                                autoComplete="off"
+                                            />
+                                            {isMetaConversionsApiConfigured && (
+                                                <Checkbox
+                                                    {...form.getInputProps('remove_meta_conversions_api_access_token', {type: 'checkbox'})}
+                                                    label={t`Remove the saved access token`}
+                                                    size="xs"
+                                                    mt="xs"
+                                                />
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })}

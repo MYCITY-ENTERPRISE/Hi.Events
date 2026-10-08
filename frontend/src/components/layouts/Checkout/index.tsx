@@ -255,9 +255,11 @@ const Checkout = () => {
     );
 
     useEffect(() => {
-        if (event && orderIsReserved && pixelsReady && hasActivePixels()) {
+        if (event && order && orderIsReserved && pixelsReady && hasActivePixels()) {
             trackPixelEvent({
                 eventName: 'InitiateCheckout',
+                value: Number(order.total_gross) || 0,
+                currency: order.currency || event.currency,
                 contentName: event.title,
                 contentId: event.id,
             });
@@ -266,7 +268,7 @@ const Checkout = () => {
 
     useEffect(() => {
         if (!event || !order || !pixelsReady || !hasActivePixels()) return;
-        if (!orderIsCompleted && !orderIsAwaitingOfflinePayment) return;
+        if (!orderIsCompleted) return;
 
         const key = `purchase_tracked_${order.short_id}`;
         if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem(key)) return;

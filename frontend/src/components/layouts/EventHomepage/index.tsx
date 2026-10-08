@@ -87,6 +87,7 @@ const EventHomepage = ({...loaderData}: EventHomepageProps) => {
         if (event && pixelsReady && hasActivePixels()) {
             trackPixelEvent({
                 eventName: 'ViewContent',
+                currency: event.currency,
                 contentName: event.title,
                 contentId: event.id,
             });

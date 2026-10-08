@@ -10,6 +10,7 @@ import {
 } from "../types.ts";
 import {api} from "./client.ts";
 import {queryParamsHelper} from "../utilites/queryParamsHelper.ts";
+import {MetaAdTrackingContext} from "../utilites/trackingPixels/metaAdTracking.ts";
 
 export interface OrderDetails {
     first_name: string,
@@ -24,6 +25,7 @@ export interface AttendeeDetails extends OrderDetails {
 export interface FinaliseOrderPayload {
     order: OrderDetails,
     attendees: AttendeeDetails[],
+    ad_tracking?: MetaAdTrackingContext,
 }
 
 export interface EditOrderPayload {

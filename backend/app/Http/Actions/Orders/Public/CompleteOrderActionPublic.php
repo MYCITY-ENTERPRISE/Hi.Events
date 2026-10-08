@@ -11,6 +11,7 @@ use HiEvents\Resources\Order\OrderResourcePublic;
 use HiEvents\Services\Application\Handlers\Order\CompleteOrderHandler;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderOrderDTO;
+use HiEvents\Services\Domain\Tracking\DTO\AdTrackingContextDTO;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,11 +42,27 @@ class CompleteOrderActionPublic extends BaseAction
                 ]),
                 'products' => $request->input('products'),
                 'event_id' => $eventId,
+                'ad_tracking_context' => $this->buildAdTrackingContext($request),
             ]));
         } catch (ResourceConflictException $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_CONFLICT);
         }
 
         return $this->resourceResponse(OrderResourcePublic::class, $order);
+    }
+
+    private function buildAdTrackingContext(CompleteOrderRequest $request): ?AdTrackingContextDTO
+    {
+        if (! is_array($request->validated('ad_tracking'))) {
+            return null;
+        }
+
+        return new AdTrackingContextDTO(
+            fbp: $request->validated('ad_tracking.fbp'),
+            fbc: $request->validated('ad_tracking.fbc'),
+            event_source_url: $request->validated('ad_tracking.event_source_url'),
+            client_ip_address: $request->ip(),
+            client_user_agent: $request->userAgent(),
+        );
     }
 }

@@ -28,6 +28,13 @@ class CompleteOrderValidator extends BaseValidator
         private readonly Route $route
     ) {}
 
+    public const AD_TRACKING_RULES = [
+        'ad_tracking' => ['sometimes', 'nullable', 'array'],
+        'ad_tracking.fbp' => ['nullable', 'string', 'max:255'],
+        'ad_tracking.fbc' => ['nullable', 'string', 'max:500'],
+        'ad_tracking.event_source_url' => ['nullable', 'url', 'max:2048'],
+    ];
+
     public function rules(): array
     {
         $questions = $this->questionRepository
@@ -81,6 +88,7 @@ class CompleteOrderValidator extends BaseValidator
                 $eventSettings->getAttendeeDetailsCollectionMethod(),
             ),
             ...$addressRules,
+            ...self::AD_TRACKING_RULES,
         ];
     }
 

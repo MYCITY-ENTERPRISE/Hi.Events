@@ -9,6 +9,7 @@ use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\PartialUpdateOrganizerSettingsDTO;
 use HiEvents\Services\Application\Handlers\Organizer\Settings\PartialUpdateOrganizerSettingsHandler;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
+use Illuminate\Encryption\Encrypter;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Tests\TestCase;
@@ -23,17 +24,21 @@ class PartialUpdateOrganizerSettingsHandlerTest extends TestCase
 
     private PartialUpdateOrganizerSettingsHandler $handler;
 
+    private Encrypter $encrypter;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->settingsRepository = Mockery::mock(OrganizerSettingsRepositoryInterface::class);
         $this->organizerRepository = Mockery::mock(OrganizerRepositoryInterface::class);
+        $this->encrypter = new Encrypter(Encrypter::generateKey('aes-256-cbc'), 'aes-256-cbc');
 
         $this->handler = new PartialUpdateOrganizerSettingsHandler(
             organizerSettingsRepository: $this->settingsRepository,
             organizerRepository: $this->organizerRepository,
             walletPassSyncDispatcher: Mockery::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
+            encrypter: $this->encrypter,
         );
     }
 
@@ -145,5 +150,72 @@ class PartialUpdateOrganizerSettingsHandlerTest extends TestCase
         ]);
 
         $this->handler->handle($dto);
+    }
+
+    public function test_meta_conversions_api_access_token_is_stored_encrypted(): void
+    {
+        $storedToken = null;
+        $this->expectSettingsUpdate(new OrganizerSettingDomainObject, function (array $attributes) use (&$storedToken) {
+            $storedToken = $attributes['meta_conversions_api_access_token'];
+
+            return true;
+        });
+
+        $this->handler->handle(PartialUpdateOrganizerSettingsDTO::from([
+            'organizer_id' => 1,
+            'account_id' => '100',
+            'meta_conversions_api_access_token' => 'EAAtoken123',
+        ]));
+
+        $this->assertNotSame('EAAtoken123', $storedToken);
+        $this->assertSame('EAAtoken123', $this->encrypter->decryptString($storedToken));
+    }
+
+    public function test_meta_conversions_api_access_token_is_cleared_when_null_is_provided(): void
+    {
+        $existingSettings = new OrganizerSettingDomainObject;
+        $existingSettings->setMetaConversionsApiAccessToken('existing-encrypted-token');
+
+        $this->expectSettingsUpdate($existingSettings, fn (array $attributes) => $attributes['meta_conversions_api_access_token'] === null);
+
+        $this->handler->handle(PartialUpdateOrganizerSettingsDTO::from([
+            'organizer_id' => 1,
+            'account_id' => '100',
+            'meta_conversions_api_access_token' => null,
+        ]));
+    }
+
+    public function test_meta_conversions_api_access_token_is_kept_when_not_provided(): void
+    {
+        $existingSettings = new OrganizerSettingDomainObject;
+        $existingSettings->setMetaConversionsApiAccessToken('existing-encrypted-token');
+
+        $this->expectSettingsUpdate(
+            $existingSettings,
+            fn (array $attributes) => $attributes['meta_conversions_api_access_token'] === 'existing-encrypted-token',
+        );
+
+        $this->handler->handle(PartialUpdateOrganizerSettingsDTO::from([
+            'organizer_id' => 1,
+            'account_id' => '100',
+            'seo_title' => 'New Title',
+        ]));
+    }
+
+    private function expectSettingsUpdate(OrganizerSettingDomainObject $existingSettings, callable $attributesMatcher): void
+    {
+        $organizer = new OrganizerDomainObject;
+        $organizer->setId(1);
+
+        $existingSettings->setId(10);
+        $existingSettings->setOrganizerId(1);
+
+        $this->organizerRepository->shouldReceive('findFirstWhere')->once()->andReturn($organizer);
+        $this->settingsRepository->shouldReceive('findFirstWhere')->once()->andReturn($existingSettings);
+        $this->settingsRepository
+            ->shouldReceive('updateWhere')
+            ->once()
+            ->with(Mockery::on($attributesMatcher), Mockery::any());
+        $this->settingsRepository->shouldReceive('findFirst')->with(10)->once()->andReturn($existingSettings);
     }
 }

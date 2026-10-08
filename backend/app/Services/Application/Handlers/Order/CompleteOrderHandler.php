@@ -39,6 +39,7 @@ use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Payment\Stripe\EventHandlers\PaymentIntentSucceededHandler;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
+use HiEvents\Services\Domain\Tracking\DTO\AdTrackingContextDTO;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
@@ -87,7 +88,7 @@ class CompleteOrderHandler
 
             $this->occurrenceStatusValidator->assertOrderOccurrencesArePurchasable($order);
 
-            $updatedOrder = $this->updateOrder($order, $orderDTO);
+            $updatedOrder = $this->updateOrder($order, $orderDTO, $orderData->ad_tracking_context);
 
             $this->createAttendees($orderData->products, $order, $orderDTO, $eventSettings);
 
@@ -337,7 +338,11 @@ class CompleteOrderHandler
         return $order;
     }
 
-    private function updateOrder(OrderDomainObject $order, CompleteOrderOrderDTO $orderDTO): OrderDomainObject
+    private function updateOrder(
+        OrderDomainObject $order,
+        CompleteOrderOrderDTO $orderDTO,
+        ?AdTrackingContextDTO $adTrackingContext,
+    ): OrderDomainObject
     {
         $updatedOrder = $this->orderRepository
             ->loadRelation(OrderItemDomainObject::class)
@@ -357,6 +362,7 @@ class CompleteOrderHandler
                     OrderDomainObjectAbstract::OPTED_INTO_MARKETING_AT => $orderDTO->opted_into_marketing
                         ? Carbon::now()
                         : null,
+                    OrderDomainObjectAbstract::AD_TRACKING_CONTEXT => $adTrackingContext?->toArray(),
                 ]
             );
 

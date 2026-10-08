@@ -16,6 +16,7 @@ class OrganizerSettingsPublicResource extends OrganizerSettingsResource
 
         unset(
             $data['tracking_consent_acknowledged'],
+            $data['meta_conversions_api_configured'],
             $data['homepage_password'],
         );
 
