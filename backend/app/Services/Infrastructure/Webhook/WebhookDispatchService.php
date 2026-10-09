@@ -181,6 +181,16 @@ class WebhookDispatchService
             }
         }
 
+        if ($eventType === DomainEventType::ORDER_MARKED_AS_PAID) {
+            /** @var AttendeeDomainObject $attendee */
+            foreach ($order->getAttendees() as $attendee) {
+                $this->dispatchAttendeeWebhook(
+                    eventType: DomainEventType::ATTENDEE_UPDATED,
+                    attendeeId: $attendee->getId(),
+                );
+            }
+        }
+
         $this->dispatchWebhook(
             $eventType,
             new OrderResource($order),
