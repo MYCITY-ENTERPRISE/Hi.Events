@@ -468,6 +468,10 @@ msgstr "Haftalık düzen"
 msgid "Abandoned"
 msgstr "Terk edildi"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:94
+msgid "Abilities"
+msgstr ""
+
 #: src/components/layouts/EventHomepage/index.tsx:482
 msgid "About"
 msgstr "Hakkında"
@@ -1232,6 +1236,19 @@ msgstr "Ürün sahiplerinden gelen tüm sorular bu e-posta adresine gönderilece
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Herhangi bir tarih farklı olabilir: kapasitesini Tarihi Düzenle'de veya bir biletin tarih başına miktarını o tarihin Ürünler sekmesinde değiştirin."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:60
+msgid "API key created successfully"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:26
+msgid "API key revoked"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:81
+msgid "API Keys"
+msgstr ""
+
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "Görünüm"
@@ -1490,6 +1507,10 @@ msgstr "Bu etkinliği geri yüklemek istediğinizden emin misiniz? Taslak etkinl
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:54
 msgid "Are you sure you want to restore this organizer?"
 msgstr "Bu organizatörü geri yüklemek istediğinizden emin misiniz?"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:24
+msgid "Are you sure you want to revoke this API key? Integrations using it will stop working immediately."
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:50
 msgid "Are you sure you want to revoke this invitation?"
@@ -2225,6 +2246,10 @@ msgstr "Tahsilatlar"
 msgid "Charity"
 msgstr "Hayır Kurumu"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:31
+msgid "Check attendees in and out"
+msgstr ""
+
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:307
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:82
 msgid "Check in"
@@ -2323,6 +2348,10 @@ msgstr "Check-in listesi bulunamadı"
 #: src/components/routes/event/CheckInLists/index.tsx:60
 msgid "check-in lists"
 msgstr "check-in listeleri"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:25
+msgid "Check-in lists"
+msgstr ""
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:51
 msgid "Check-in Lists"
@@ -3155,6 +3184,12 @@ msgstr "Satış için bilet ve ürünler oluşturup yapılandırın."
 msgid "Create Announcement"
 msgstr "Duyuru oluştur"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:86
+#: src/components/modals/CreateApiKeyModal/index.tsx:131
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:83
+msgid "Create API Key"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:320
 msgid "Create Attendee"
 msgstr "Katılımcı Oluştur"
@@ -3295,6 +3330,10 @@ msgstr "Kendi etkinliğinizi oluşturun"
 #: src/components/routes/admin/Messages/index.tsx:310
 msgid "Created"
 msgstr "Oluşturuldu"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:95
+msgid "Created by"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:593
 msgid "Creating {0} dates. This may take a moment."
@@ -4789,6 +4828,10 @@ msgstr "Etkinlik Performansı"
 #: src/components/routes/admin/Dashboard/index.tsx:450
 msgid "Events Starting in Next 24 Hours"
 msgstr "Önümüzdeki 24 Saat İçinde Başlayan Etkinlikler"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:21
+msgid "Events, settings and occurrences"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:896
 msgid "Every"
@@ -6480,6 +6523,10 @@ msgstr "Son Yanıt"
 msgid "Last Triggered"
 msgstr "Son Tetiklenme"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:96
+msgid "Last used"
+msgstr ""
+
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:70
 msgid "Last Used"
 msgstr "Son Kullanım"
@@ -6515,6 +6562,10 @@ msgstr "Etkinlikteki tüm biletleri kapsaması için açık bırakın. Belirli b
 #: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Katılımcıların biletlerini Google Wallet'a ve Apple Wallet'a eklemesine izin verin. Aşağıdaki markalama ikisinde de kullanılır."
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:82
+msgid "Let other applications read your account data. Keys are shown only once, when they are created."
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:305
 msgid "Let them know about the change"
@@ -7180,6 +7231,10 @@ msgstr "Gösterilecek bağlı kuruluş yok"
 #: src/components/routes/admin/Announcements/index.tsx:145
 msgid "No announcements yet"
 msgstr "Henüz duyuru yok"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:106
+msgid "No API keys yet"
+msgstr ""
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:21
 msgid "No archived events to show."
@@ -7954,6 +8009,10 @@ msgstr "Fatura numaraları için isteğe bağlı önek (örn., FAT-)"
 #: src/components/routes/event/TicketDesigner/index.tsx:165
 msgid "Optional text for disclaimers, contact info, or thank you notes (single line only)"
 msgstr "Feragatnameler, iletişim bilgileri veya teşekkür notları için isteğe bağlı metin (yalnızca tek satır)"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:127
+msgid "Optional. The key stops working at the end of this day."
+msgstr ""
 
 #: src/components/common/QuestionsTable/index.tsx:125
 msgid "options"
@@ -9054,6 +9113,10 @@ msgstr "Satılan Ürünler"
 msgid "Products sorted successfully"
 msgstr "Ürünler başarıyla sıralandı"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:22
+msgid "Products, categories, capacities, taxes and fees"
+msgstr ""
+
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
 msgstr "Profil"
@@ -9268,6 +9331,10 @@ msgstr "Yeri Yeniden Teklif Et"
 #: src/components/routes/event/OccurrenceDetail/index.tsx:94
 msgid "Reactivate this date? It will be reopened for future sales."
 msgstr "Bu tarih yeniden etkinleştirilsin mi? Gelecekteki satışlara yeniden açılacak."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:98
+msgid "Read"
+msgstr ""
 
 #: src/components/modals/PublishEventModal/index.tsx:147
 msgid "Ready to go live?"
@@ -9529,6 +9596,10 @@ msgstr "Rapor bulunamadı"
 msgid "Reports"
 msgstr "Raporlar"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:26
+msgid "Reports and statistics"
+msgstr ""
+
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
 msgstr "Yeni bir bağlantı isteyin"
@@ -9715,6 +9786,11 @@ msgstr "Gelir Özeti"
 #: src/components/routes/admin/SpamEvents/index.tsx:102
 msgid "Review events flagged as potential spam by the automated check"
 msgstr "Otomatik kontrol tarafından olası spam olarak işaretlenen etkinlikleri inceleyin"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:69
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:70
+msgid "Revoke"
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:133
 msgid "Revoke invitation"
@@ -10181,6 +10257,10 @@ msgstr "{0} tarihindekilerin tümünü seç"
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:119
 msgid "Select an event"
 msgstr "Bir etkinlik seçin"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:47
+msgid "Select at least one ability"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:310
 msgid "Select at least one account"
@@ -11502,6 +11582,14 @@ msgstr "Aradığınız etkinlik şu anda mevcut değil. Kaldırılmış, süresi
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Tam sipariş tutarı müşterinin orijinal ödeme yöntemine iade edilecektir."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:113
+msgid "The key can change data in your account"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:99
+msgid "The key can only read this data"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:237
 msgid "The language the attendee will receive emails in."
 msgstr "Katılımcının e-postaları alacağı dil."
@@ -11832,6 +11920,10 @@ msgstr "Bu, kullanıcılarınıza görüntülenecek organizatörünüzün adıd�
 #: src/components/modals/CreateWebhookModal/index.tsx:64
 msgid "This is the only time the signing secret will be shown. Please copy it now and store it securely."
 msgstr "İmzalama anahtarı yalnızca bu kez gösterilecektir. Lütfen şimdi kopyalayın ve güvenli bir şekilde saklayın."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:71
+msgid "This is the only time this API key will be shown. Please copy it now and store it securely."
+msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:26
 #~ msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
@@ -12193,6 +12285,10 @@ msgstr "Kime"
 #: src/components/modals/SendMessageModal/index.tsx:315
 msgid "To increase your limits, contact us at"
 msgstr "Limitinizi artırmak için bizimle iletişime geçin"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:91
+msgid "To recognise the integration that uses this key"
+msgstr ""
 
 #: src/components/common/OccurrenceSelect/index.tsx:148
 #: src/components/common/PeriodSelector/index.tsx:30
@@ -13255,6 +13351,10 @@ msgstr "Webhook bildirim gönderecek"
 msgid "Webhooks"
 msgstr "Webhook'lar"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:27
+msgid "Webhooks and their logs"
+msgstr ""
+
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
 msgstr "Web Sitesi"
@@ -13522,6 +13622,10 @@ msgstr "Atölye"
 msgid "Workshop with early bird"
 msgstr "Erken kayıtlı atölye"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:112
+msgid "Write"
+msgstr ""
+
 #: src/components/common/ContactOrganizerModal/index.tsx:89
 msgid "Write your message here..."
 msgstr "Mesajınızı buraya yazın..."
@@ -13771,6 +13875,10 @@ msgstr "Hesap adınız etkinlik sayfalarında ve e-postalarda kullanılır."
 #: src/components/routes/event/Affiliates/index.tsx:48
 msgid "Your affiliates have been exported successfully."
 msgstr "Bağlı kuruluşlarınız başarıyla dışa aktarıldı."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:69
+msgid "Your API Key"
+msgstr ""
 
 #: src/components/routes/event/attendees.tsx:164
 msgid "Your attendees have been exported successfully."

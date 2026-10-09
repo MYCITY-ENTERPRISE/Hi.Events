@@ -468,6 +468,10 @@ msgstr "按星期模式"
 msgid "Abandoned"
 msgstr "已放弃"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:94
+msgid "Abilities"
+msgstr ""
+
 #: src/components/layouts/EventHomepage/index.tsx:482
 msgid "About"
 msgstr "关于"
@@ -1232,6 +1236,19 @@ msgstr "产品持有者的任何查询都将发送到此电子邮件地址。此
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "任何单个日期都可以不同：在“编辑日期”中更改其容量，或在该日期的“产品”标签页中更改某种票的每日数量。"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:60
+msgid "API key created successfully"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:26
+msgid "API key revoked"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:81
+msgid "API Keys"
+msgstr ""
+
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "外观"
@@ -1490,6 +1507,10 @@ msgstr "您确定要恢复此活动吗？它将作为草稿恢复。"
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:54
 msgid "Are you sure you want to restore this organizer?"
 msgstr "您确定要恢复此主办方吗？"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:24
+msgid "Are you sure you want to revoke this API key? Integrations using it will stop working immediately."
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:50
 msgid "Are you sure you want to revoke this invitation?"
@@ -2225,6 +2246,10 @@ msgstr "收款记录"
 msgid "Charity"
 msgstr "慈善"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:31
+msgid "Check attendees in and out"
+msgstr ""
+
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:307
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:82
 msgid "Check in"
@@ -2323,6 +2348,10 @@ msgstr "未找到签到列表"
 #: src/components/routes/event/CheckInLists/index.tsx:60
 msgid "check-in lists"
 msgstr "签到名单"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:25
+msgid "Check-in lists"
+msgstr ""
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:51
 msgid "Check-in Lists"
@@ -3155,6 +3184,12 @@ msgstr "创建并配置待售门票和商品。"
 msgid "Create Announcement"
 msgstr "创建公告"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:86
+#: src/components/modals/CreateApiKeyModal/index.tsx:131
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:83
+msgid "Create API Key"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:320
 msgid "Create Attendee"
 msgstr "创建与会者"
@@ -3295,6 +3330,10 @@ msgstr "创建您自己的活动"
 #: src/components/routes/admin/Messages/index.tsx:310
 msgid "Created"
 msgstr "已创建"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:95
+msgid "Created by"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:593
 msgid "Creating {0} dates. This may take a moment."
@@ -4789,6 +4828,10 @@ msgstr "活动表现"
 #: src/components/routes/admin/Dashboard/index.tsx:450
 msgid "Events Starting in Next 24 Hours"
 msgstr "未来24小时内开始的活动"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:21
+msgid "Events, settings and occurrences"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:896
 msgid "Every"
@@ -6480,6 +6523,10 @@ msgstr "最新响应"
 msgid "Last Triggered"
 msgstr "最近触发"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:96
+msgid "Last used"
+msgstr ""
+
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:70
 msgid "Last Used"
 msgstr "最近一次使用"
@@ -6515,6 +6562,10 @@ msgstr "保持开启即可覆盖活动的所有门票；关闭后可选择特定
 #: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "让参会者将门票添加到 Google Wallet 和 Apple Wallet。以下品牌设置同时用于两者。"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:82
+msgid "Let other applications read your account data. Keys are shown only once, when they are created."
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:305
 msgid "Let them know about the change"
@@ -7180,6 +7231,10 @@ msgstr "没有推广员可显示"
 #: src/components/routes/admin/Announcements/index.tsx:145
 msgid "No announcements yet"
 msgstr "暂无公告"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:106
+msgid "No API keys yet"
+msgstr ""
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:21
 msgid "No archived events to show."
@@ -7954,6 +8009,10 @@ msgstr "发票编号的可选前缀（例如，INV-）"
 #: src/components/routes/event/TicketDesigner/index.tsx:165
 msgid "Optional text for disclaimers, contact info, or thank you notes (single line only)"
 msgstr "免责声明、联系信息或感谢说明的可选文本（仅单行）"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:127
+msgid "Optional. The key stops working at the end of this day."
+msgstr ""
 
 #: src/components/common/QuestionsTable/index.tsx:125
 msgid "options"
@@ -9054,6 +9113,10 @@ msgstr "已售产品"
 msgid "Products sorted successfully"
 msgstr "产品排序成功"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:22
+msgid "Products, categories, capacities, taxes and fees"
+msgstr ""
+
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
 msgstr "简介"
@@ -9268,6 +9331,10 @@ msgstr "重新提供名额"
 #: src/components/routes/event/OccurrenceDetail/index.tsx:94
 msgid "Reactivate this date? It will be reopened for future sales."
 msgstr "重新启用该日期？它将重新开放售票。"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:98
+msgid "Read"
+msgstr ""
 
 #: src/components/modals/PublishEventModal/index.tsx:147
 msgid "Ready to go live?"
@@ -9529,6 +9596,10 @@ msgstr "未找到报告"
 msgid "Reports"
 msgstr "报告"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:26
+msgid "Reports and statistics"
+msgstr ""
+
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
 msgstr "请求新链接"
@@ -9715,6 +9786,11 @@ msgstr "收入摘要"
 #: src/components/routes/admin/SpamEvents/index.tsx:102
 msgid "Review events flagged as potential spam by the automated check"
 msgstr "审核被自动检查标记为疑似垃圾内容的活动"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:69
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:70
+msgid "Revoke"
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:133
 msgid "Revoke invitation"
@@ -10181,6 +10257,10 @@ msgstr "全选 {0} 当天"
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:119
 msgid "Select an event"
 msgstr "选择活动"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:47
+msgid "Select at least one ability"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:310
 msgid "Select at least one account"
@@ -11502,6 +11582,14 @@ msgstr "您查找的活动目前不可用。它可能已被删除、过期或 UR
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "订单全额将退款至客户的原始付款方式。"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:113
+msgid "The key can change data in your account"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:99
+msgid "The key can only read this data"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:237
 msgid "The language the attendee will receive emails in."
 msgstr "与会者接收电子邮件的语言。"
@@ -11832,6 +11920,10 @@ msgstr "这是您的组织者名称，将展示给用户。"
 #: src/components/modals/CreateWebhookModal/index.tsx:64
 msgid "This is the only time the signing secret will be shown. Please copy it now and store it securely."
 msgstr "签名密钥仅显示一次。请立即复制并妥善保存。"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:71
+msgid "This is the only time this API key will be shown. Please copy it now and store it securely."
+msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:26
 #~ msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
@@ -12193,6 +12285,10 @@ msgstr "收件人"
 #: src/components/modals/SendMessageModal/index.tsx:315
 msgid "To increase your limits, contact us at"
 msgstr "要提高您的限制，请联系我们"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:91
+msgid "To recognise the integration that uses this key"
+msgstr ""
 
 #: src/components/common/OccurrenceSelect/index.tsx:148
 #: src/components/common/PeriodSelector/index.tsx:30
@@ -13255,6 +13351,10 @@ msgstr "Webhook 将发送通知"
 msgid "Webhooks"
 msgstr "Webhooks"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:27
+msgid "Webhooks and their logs"
+msgstr ""
+
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
 msgstr "网站"
@@ -13522,6 +13622,10 @@ msgstr "研讨会"
 msgid "Workshop with early bird"
 msgstr "含早鸟票的工作坊"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:112
+msgid "Write"
+msgstr ""
+
 #: src/components/common/ContactOrganizerModal/index.tsx:89
 msgid "Write your message here..."
 msgstr "请在此输入您的消息..."
@@ -13771,6 +13875,10 @@ msgstr "您的账户名称会在活动页面和电子邮件中使用。"
 #: src/components/routes/event/Affiliates/index.tsx:48
 msgid "Your affiliates have been exported successfully."
 msgstr "您的推广员已成功导出。"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:69
+msgid "Your API Key"
+msgstr ""
 
 #: src/components/routes/event/attendees.tsx:164
 msgid "Your attendees have been exported successfully."

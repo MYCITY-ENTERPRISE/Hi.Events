@@ -464,6 +464,10 @@ msgstr "Arkipäiväkuvio"
 msgid "Abandoned"
 msgstr "Hylätty"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:94
+msgid "Abilities"
+msgstr ""
+
 #: src/components/layouts/EventHomepage/index.tsx:482
 msgid "About"
 msgstr "Tietoja"
@@ -1228,6 +1232,19 @@ msgstr "Kaikki lipunhaltijoiden kyselyt lähetetään tähän sähköpostiosoitt
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Yksittäinen päivämäärä voi poiketa: muuta sen kapasiteettia kohdassa Muokkaa päivämäärää tai lipun päivämääräkohtaista määrää kyseisen päivämäärän Tuotteet-välilehdellä."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:60
+msgid "API key created successfully"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:26
+msgid "API key revoked"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:81
+msgid "API Keys"
+msgstr ""
+
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "Ulkoasu"
@@ -1486,6 +1503,10 @@ msgstr "Haluatko varmasti palauttaa tämän tapahtuman? Se palautetaan luonnokse
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:54
 msgid "Are you sure you want to restore this organizer?"
 msgstr "Haluatko varmasti palauttaa tämän järjestäjän?"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:24
+msgid "Are you sure you want to revoke this API key? Integrations using it will stop working immediately."
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:50
 msgid "Are you sure you want to revoke this invitation?"
@@ -2221,6 +2242,10 @@ msgstr "Maksut"
 msgid "Charity"
 msgstr "Hyväntekeväisyys"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:31
+msgid "Check attendees in and out"
+msgstr ""
+
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:307
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:82
 msgid "Check in"
@@ -2319,6 +2344,10 @@ msgstr "Sisäänkirjauslista ei löydy"
 #: src/components/routes/event/CheckInLists/index.tsx:60
 msgid "check-in lists"
 msgstr "sisäänkirjauslistat"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:25
+msgid "Check-in lists"
+msgstr ""
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:51
 msgid "Check-in Lists"
@@ -3147,6 +3176,12 @@ msgstr "Luo ja määritä myytäviä lippuja ja tuotteita."
 msgid "Create Announcement"
 msgstr "Luo ilmoitus"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:86
+#: src/components/modals/CreateApiKeyModal/index.tsx:131
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:83
+msgid "Create API Key"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:320
 msgid "Create Attendee"
 msgstr "Luo osallistuja"
@@ -3287,6 +3322,10 @@ msgstr "Luo oma tapahtumasi"
 #: src/components/routes/admin/Messages/index.tsx:310
 msgid "Created"
 msgstr "Luotu"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:95
+msgid "Created by"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:593
 msgid "Creating {0} dates. This may take a moment."
@@ -4781,6 +4820,10 @@ msgstr "Tapahtumien suorituskyky"
 #: src/components/routes/admin/Dashboard/index.tsx:450
 msgid "Events Starting in Next 24 Hours"
 msgstr "Tapahtumat alkavat seuraavan 24 tunnin aikana"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:21
+msgid "Events, settings and occurrences"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:896
 msgid "Every"
@@ -6470,6 +6513,10 @@ msgstr "Viimeisin vastaus"
 msgid "Last Triggered"
 msgstr "Viimeisin käynnistys"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:96
+msgid "Last used"
+msgstr ""
+
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:70
 msgid "Last Used"
 msgstr "Viimeksi käytetty"
@@ -6505,6 +6552,10 @@ msgstr "Jätä päälle kattaaksesi kaikki tapahtuman liput. Poista käytöstä 
 #: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Anna osallistujien lisätä lippunsa Google Walletiin ja Apple Walletiin. Alla olevaa ulkoasua käytetään molemmissa."
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:82
+msgid "Let other applications read your account data. Keys are shown only once, when they are created."
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:305
 msgid "Let them know about the change"
@@ -7170,6 +7221,10 @@ msgstr "Ei näytettäviä kumppaneita"
 #: src/components/routes/admin/Announcements/index.tsx:145
 msgid "No announcements yet"
 msgstr "Ei ilmoituksia vielä"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:106
+msgid "No API keys yet"
+msgstr ""
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:21
 msgid "No archived events to show."
@@ -7944,6 +7999,10 @@ msgstr "Valinnainen esitäyte laskunumeroille (esim. INV-)"
 #: src/components/routes/event/TicketDesigner/index.tsx:165
 msgid "Optional text for disclaimers, contact info, or thank you notes (single line only)"
 msgstr "Valinnainen teksti vastuuvapauslausekkeille, yhteystiedoille tai kiitosviesteille (vain yksi rivi)"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:127
+msgid "Optional. The key stops working at the end of this day."
+msgstr ""
 
 #: src/components/common/QuestionsTable/index.tsx:125
 msgid "options"
@@ -9036,6 +9095,10 @@ msgstr "Myydyt tuotteet"
 msgid "Products sorted successfully"
 msgstr "Tuotteet lajiteltu onnistuneesti"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:22
+msgid "Products, categories, capacities, taxes and fees"
+msgstr ""
+
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
 msgstr "Profiili"
@@ -9250,6 +9313,10 @@ msgstr "Tarjoa paikka uudelleen"
 #: src/components/routes/event/OccurrenceDetail/index.tsx:94
 msgid "Reactivate this date? It will be reopened for future sales."
 msgstr "Aktivoi tämä päivä uudelleen? Se avataan uudelleen tulevia myyntejä varten."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:98
+msgid "Read"
+msgstr ""
 
 #: src/components/modals/PublishEventModal/index.tsx:147
 msgid "Ready to go live?"
@@ -9511,6 +9578,10 @@ msgstr "Raporttia ei löydy"
 msgid "Reports"
 msgstr "Raportit"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:26
+msgid "Reports and statistics"
+msgstr ""
+
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
 msgstr "Pyydä uusi linkki"
@@ -9693,6 +9764,11 @@ msgstr "Tuottojen yhteenveto"
 #: src/components/routes/admin/SpamEvents/index.tsx:102
 msgid "Review events flagged as potential spam by the automated check"
 msgstr "Tarkista tapahtumat, jotka automaattinen tarkistus on merkinnyt mahdolliseksi roskapostiksi"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:69
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:70
+msgid "Revoke"
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:133
 msgid "Revoke invitation"
@@ -10155,6 +10231,10 @@ msgstr "Valitse kaikki kohteessa {0}"
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:119
 msgid "Select an event"
 msgstr "Valitse tapahtuma"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:47
+msgid "Select at least one ability"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:310
 msgid "Select at least one account"
@@ -11476,6 +11556,14 @@ msgstr "Etsimääsi tapahtumaa ei ole saatavilla tällä hetkellä. Se on voitu 
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Koko tilauksen summa hyvitetään asiakkaan alkuperäiselle maksutavalle."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:113
+msgid "The key can change data in your account"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:99
+msgid "The key can only read this data"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:237
 msgid "The language the attendee will receive emails in."
 msgstr "Kieli, jolla osallistuja saa sähköpostit."
@@ -11802,6 +11890,10 @@ msgstr "Tämä on järjestäjäsi nimi, joka näytetään käyttäjillesi."
 #: src/components/modals/CreateWebhookModal/index.tsx:64
 msgid "This is the only time the signing secret will be shown. Please copy it now and store it securely."
 msgstr "Allekirjoitussalaisuus näytetään vain tämän kerran. Kopioi se nyt ja säilytä sitä turvallisesti."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:71
+msgid "This is the only time this API key will be shown. Please copy it now and store it securely."
+msgstr ""
 
 #: src/components/routes/my-tickets/index.tsx:179
 msgid "This link is invalid or has expired."
@@ -12159,6 +12251,10 @@ msgstr "Vastaanottaja"
 #: src/components/modals/SendMessageModal/index.tsx:315
 msgid "To increase your limits, contact us at"
 msgstr "Jos haluat nostaa rajojasi, ota meihin yhteyttä osoitteessa"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:91
+msgid "To recognise the integration that uses this key"
+msgstr ""
 
 #: src/components/common/OccurrenceSelect/index.tsx:148
 #: src/components/common/PeriodSelector/index.tsx:30
@@ -13216,6 +13312,10 @@ msgstr "Webhook lähettää ilmoituksia"
 msgid "Webhooks"
 msgstr "Webhookit"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:27
+msgid "Webhooks and their logs"
+msgstr ""
+
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
 msgstr "Verkkosivusto"
@@ -13483,6 +13583,10 @@ msgstr "Työpaja"
 msgid "Workshop with early bird"
 msgstr "Työpaja early bird -lipulla"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:112
+msgid "Write"
+msgstr ""
+
 #: src/components/common/ContactOrganizerModal/index.tsx:89
 msgid "Write your message here..."
 msgstr "Kirjoita viestisi tähän..."
@@ -13732,6 +13836,10 @@ msgstr "Tilisi nimeä käytetään tapahtumasivuilla ja sähköposteissa."
 #: src/components/routes/event/Affiliates/index.tsx:48
 msgid "Your affiliates have been exported successfully."
 msgstr "Kumppanisi vietiin onnistuneesti."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:69
+msgid "Your API Key"
+msgstr ""
 
 #: src/components/routes/event/attendees.tsx:164
 msgid "Your attendees have been exported successfully."
