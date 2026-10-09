@@ -26,6 +26,7 @@ use HiEvents\Resources\EventOccurrence\EventOccurrenceResource;
 use HiEvents\Resources\Order\OrderResource;
 use HiEvents\Resources\Product\ProductResource;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
+use Illuminate\Config\Repository;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Psr\Log\LoggerInterface;
 use Spatie\WebhookServer\WebhookCall;
@@ -41,6 +42,7 @@ class WebhookDispatchService
         private readonly AttendeeCheckInRepositoryInterface $attendeeCheckInRepository,
         private readonly EventRepositoryInterface $eventRepository,
         private readonly EventOccurrenceRepositoryInterface $eventOccurrenceRepository,
+        private readonly Repository $config,
     ) {}
 
     public function dispatchEventWebhook(DomainEventType $eventType, int $eventId): void
@@ -194,11 +196,15 @@ class WebhookDispatchService
         foreach ($webhooks as $webhook) {
             $this->logger->info("Dispatching webhook for event ID: $eventId and webhook ID: {$webhook->getId()}");
 
-            WebhookCall::create()
+            $webhookCall = WebhookCall::create();
+
+            $webhookCall
                 ->url($webhook->getUrl())
                 ->payload([
                     'event_type' => $eventType->value,
                     'event_sent_at' => now()->toIso8601String(),
+                    // Generated once per call and signed with the body, so every retry carries the same value.
+                    'delivery_id' => $webhookCall->getUuid(),
                     'payload' => $payload->resolve(),
                 ])
                 ->useSecret($webhook->getSecret())
@@ -206,8 +212,26 @@ class WebhookDispatchService
                     'webhook_id' => $webhook->getId(),
                     'event_id' => $eventId,
                     'event_type' => $eventType->name,
-                ])
-                ->dispatchSync();
+                ]);
+
+            if ($this->usesSyncQueue()) {
+                // No worker to retry the call: keep sending it right away.
+                $webhookCall->dispatchSync();
+
+                continue;
+            }
+
+            // Queued on the queue of the job dispatching it, so failed calls are really retried.
+            $webhookCall
+                ->onQueue($this->config->get('queue.webhook_queue_name'))
+                ->dispatch();
         }
+    }
+
+    private function usesSyncQueue(): bool
+    {
+        $connection = $this->config->get('webhook-server.connection') ?? $this->config->get('queue.default');
+
+        return $this->config->get("queue.connections.$connection.driver") === 'sync';
     }
 }

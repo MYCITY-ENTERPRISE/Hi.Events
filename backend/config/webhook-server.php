@@ -56,8 +56,11 @@ return [
 
     /*
      * The amount of times the webhook should be called before we give up.
+     *
+     * Capped at 5: with the exponential backoff below, the 5th attempt is sent about
+     * 3 hours after the first one, the 6th one more than a day later.
      */
-    'tries' => 3,
+    'tries' => min(max((int) env('WEBHOOK_TRIES', 3), 1), 5),
 
     /*
      * This class determines how many seconds there should be between attempts.
