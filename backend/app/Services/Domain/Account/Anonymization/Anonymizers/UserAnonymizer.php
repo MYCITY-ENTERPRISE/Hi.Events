@@ -32,14 +32,17 @@ class UserAnonymizer implements AccountAnonymizerInterface
             );
         }
 
-        if ($context->soleUserIds !== []) {
-            $results[] = $this->executor->delete(
-                query: $this->databaseManager->table('personal_access_tokens')
+        // The account's API keys, whoever created them, and the tokens of users who only belong to this account.
+        $results[] = $this->executor->delete(
+            query: $this->databaseManager->table('personal_access_tokens')
+                ->where('account_id', $context->accountId)
+                ->when($context->soleUserIds !== [], fn ($query) => $query->orWhere(fn ($query) => $query
                     ->where('tokenable_type', User::class)
-                    ->whereIn('tokenable_id', $context->soleUserIds),
-                entity: 'personal_access_tokens',
-            );
+                    ->whereIn('tokenable_id', $context->soleUserIds))),
+            entity: 'personal_access_tokens',
+        );
 
+        if ($context->soleUserIds !== []) {
             $results[] = $this->executor->scrub(
                 query: $this->databaseManager->table('users')->whereIn('id', $context->soleUserIds),
                 entity: 'users',

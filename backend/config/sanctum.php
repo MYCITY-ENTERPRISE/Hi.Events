@@ -35,7 +35,8 @@ return [
     |
     */
 
-    'guard' => ['web'],
+    // Only bearer API keys: no session guard authenticates API requests through Sanctum.
+    'guard' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -49,6 +50,17 @@ return [
     */
 
     'expiration' => null,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Token Prefix
+    |--------------------------------------------------------------------------
+    |
+    | Prefix of new API keys. It lets secret scanners recognise a leaked key.
+    |
+    */
+
+    'token_prefix' => env('SANCTUM_TOKEN_PREFIX', 'hie_'),
 
     /*
     |--------------------------------------------------------------------------

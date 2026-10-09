@@ -54,6 +54,10 @@ use HiEvents\Http\Actions\Affiliates\GetAffiliatesAction;
 use HiEvents\Http\Actions\Affiliates\UpdateAffiliateAction;
 use HiEvents\Http\Actions\Announcements\DismissAnnouncementAction;
 use HiEvents\Http\Actions\Announcements\GetActiveAnnouncementsAction;
+use HiEvents\Http\Actions\ApiKeys\CreateApiKeyAction;
+use HiEvents\Http\Actions\ApiKeys\DeleteApiKeyAction;
+use HiEvents\Http\Actions\ApiKeys\GetApiKeysAction;
+use HiEvents\Http\Actions\ApiKeys\GetCurrentApiKeyAction;
 use HiEvents\Http\Actions\AppleWallet\GetLatestAppleWalletPassAction;
 use HiEvents\Http\Actions\AppleWallet\GetUpdatableAppleWalletPassesAction;
 use HiEvents\Http\Actions\AppleWallet\LogAppleWalletMessagesAction;
@@ -298,7 +302,7 @@ $router->prefix('/auth')->group(
 /**
  * Logged In Routes
  */
-$router->middleware(['auth:api'])->group(
+$router->middleware(['auth:api,sanctum', 'api-key.scope'])->group(
     function (Router $router): void {
         // Auth
         $router->get('/auth/logout', LogoutAction::class);
@@ -329,6 +333,12 @@ $router->middleware(['auth:api'])->group(
         $router->get('/accounts/deletion-request', GetAccountDeletionStatusAction::class);
         $router->get('/accounts/{account_id?}', GetAccountAction::class);
         $router->put('/accounts/{account_id?}', UpdateAccountAction::class);
+
+        // API keys
+        $router->get('/api-key', GetCurrentApiKeyAction::class);
+        $router->get('/accounts/{account_id}/api-keys', GetApiKeysAction::class);
+        $router->post('/accounts/{account_id}/api-keys', CreateApiKeyAction::class);
+        $router->delete('/accounts/{account_id}/api-keys/{api_key_id}', DeleteApiKeyAction::class);
 
         // Organizers
         $router->post('/organizers', CreateOrganizerAction::class);

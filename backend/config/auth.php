@@ -46,6 +46,11 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+        // Account API keys (Laravel Sanctum personal access tokens). See config/api-keys.php.
+        'sanctum' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
     ],
 
     /*
