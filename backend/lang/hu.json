@@ -774,5 +774,6 @@
     "API key not found": "Az API-kulcs nem található",
     "This API key does not have the :ability ability.": "Ez az API-kulcs nem rendelkezik a(z) :ability jogosultsággal.",
     "This route can only be called with an API key.": "Ez az útvonal csak API-kulccsal hívható meg.",
-    "This route is not available to API keys.": "Ez az útvonal nem érhető el API-kulcsokkal."
+    "This route is not available to API keys.": "Ez az útvonal nem érhető el API-kulcsokkal.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Az API-kulcsok csak a résztvevők beléptetésére használhatók, a rendeléseik fizetettként való megjelölésére nem."
 }

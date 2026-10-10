@@ -769,5 +769,6 @@
     "API key not found": "API-nyckeln hittades inte",
     "This API key does not have the :ability ability.": "Den här API-nyckeln har inte behörigheten :ability.",
     "This route can only be called with an API key.": "Den här rutten kan bara anropas med en API-nyckel.",
-    "This route is not available to API keys.": "Den här rutten är inte tillgänglig för API-nycklar."
+    "This route is not available to API keys.": "Den här rutten är inte tillgänglig för API-nycklar.",
+    "API keys can only check attendees in, not mark their orders as paid.": "API-nycklar kan bara checka in deltagare, inte markera deras beställningar som betalda."
 }

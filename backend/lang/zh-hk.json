@@ -769,5 +769,6 @@
     "API key not found": "找不到 API 金鑰",
     "This API key does not have the :ability ability.": "此 API 金鑰沒有 :ability 權限。",
     "This route can only be called with an API key.": "此路由只能使用 API 金鑰呼叫。",
-    "This route is not available to API keys.": "API 金鑰無法使用此路由。"
+    "This route is not available to API keys.": "API 金鑰無法使用此路由。",
+    "API keys can only check attendees in, not mark their orders as paid.": "API 金鑰只能為參加者簽到，不能將其訂單標記為已付款。"
 }

@@ -769,5 +769,6 @@
     "API key not found": "API-sleutel niet gevonden",
     "This API key does not have the :ability ability.": "Deze API-sleutel heeft de bevoegdheid :ability niet.",
     "This route can only be called with an API key.": "Deze route kan alleen met een API-sleutel worden aangeroepen.",
-    "This route is not available to API keys.": "Deze route is niet beschikbaar voor API-sleutels."
+    "This route is not available to API keys.": "Deze route is niet beschikbaar voor API-sleutels.",
+    "API keys can only check attendees in, not mark their orders as paid.": "API-sleutels kunnen deelnemers alleen inchecken, niet hun bestellingen als betaald markeren."
 }

@@ -6,7 +6,9 @@ use HiEvents\Helper\IdHelper;
 return [
     'contract' => 1,
 
-    'features' => [],
+    'features' => [
+        'authenticated_check_in',
+    ],
 
     'open_routes' => [
         'GET api-key',
@@ -45,6 +47,9 @@ return [
 
         'GET events/{event_id}/check-in-lists' => ApiKeyAbility::CHECK_IN_LISTS_READ->value,
         'GET events/{event_id}/check-in-lists/{check_in_list_id}' => ApiKeyAbility::CHECK_IN_LISTS_READ->value,
+
+        'POST events/{event_id}/check-in-lists/{check_in_list_id}/check-ins' => ApiKeyAbility::CHECK_INS_WRITE->value,
+        'DELETE events/{event_id}/check-in-lists/{check_in_list_id}/check-ins/{check_in_short_id}' => ApiKeyAbility::CHECK_INS_WRITE->value,
 
         'GET events/{event_id}/stats' => ApiKeyAbility::REPORTS_READ->value,
         'GET events/{event_id}/counts' => ApiKeyAbility::REPORTS_READ->value,

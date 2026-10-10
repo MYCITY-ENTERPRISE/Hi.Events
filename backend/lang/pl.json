@@ -966,5 +966,6 @@
     "API key not found": "Nie znaleziono klucza API",
     "This API key does not have the :ability ability.": "Ten klucz API nie ma uprawnienia :ability.",
     "This route can only be called with an API key.": "Tę trasę można wywołać tylko za pomocą klucza API.",
-    "This route is not available to API keys.": "Ta trasa nie jest dostępna dla kluczy API."
+    "This route is not available to API keys.": "Ta trasa nie jest dostępna dla kluczy API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Klucze API mogą tylko meldować uczestników, a nie oznaczać ich zamówień jako opłaconych."
 }

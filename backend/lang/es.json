@@ -814,5 +814,6 @@
     "API key not found": "Clave de API no encontrada",
     "This API key does not have the :ability ability.": "Esta clave de API no tiene el permiso :ability.",
     "This route can only be called with an API key.": "Esta ruta solo se puede llamar con una clave de API.",
-    "This route is not available to API keys.": "Esta ruta no está disponible para las claves de API."
+    "This route is not available to API keys.": "Esta ruta no está disponible para las claves de API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Las claves de API solo pueden registrar la entrada de los asistentes, no marcar sus pedidos como pagados."
 }

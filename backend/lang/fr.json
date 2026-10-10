@@ -769,5 +769,6 @@
     "API key not found": "Clé d'API introuvable",
     "This API key does not have the :ability ability.": "Cette clé d'API n'a pas la capacité :ability.",
     "This route can only be called with an API key.": "Cette route ne peut être appelée qu'avec une clé d'API.",
-    "This route is not available to API keys.": "Cette route n'est pas accessible aux clés d'API."
+    "This route is not available to API keys.": "Cette route n'est pas accessible aux clés d'API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Une clé d'API peut seulement enregistrer l'arrivée des participants, pas marquer leurs commandes comme payées."
 }
