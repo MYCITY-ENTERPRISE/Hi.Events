@@ -27,6 +27,15 @@ use Illuminate\Support\Facades\DB;
  */
 class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 {
+    /**
+     * Last sort key of every paginated order listing, in the direction of the requested sort.
+     * Pages are read with LIMIT/OFFSET, and PostgreSQL does not keep rows that share the sort
+     * value (orders placed in the same second, for example) in the same order from one page
+     * to the next: without a unique last key, an order can be listed on two pages and another
+     * on none.
+     */
+    private const ORDER_ID_TIE_BREAKER = 'orders.id';
+
     public function findByEventId(int $eventId, QueryParamsDTO $params): LengthAwarePaginator
     {
         $where = [
@@ -63,10 +72,13 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             }
         }
 
-        $this->model = $this->model->orderBy(
-            column: $this->validateSortColumn($params->sort_by, OrderDomainObject::class),
-            direction: $this->validateSortDirection($params->sort_direction, OrderDomainObject::class),
-        );
+        $sortDirection = $this->validateSortDirection($params->sort_direction, OrderDomainObject::class);
+        $this->model = $this->model
+            ->orderBy(
+                column: $this->validateSortColumn($params->sort_by, OrderDomainObject::class),
+                direction: $sortDirection,
+            )
+            ->orderBy(self::ORDER_ID_TIE_BREAKER, $sortDirection);
 
         return $this->paginateWhere(
             where: $where,
@@ -110,10 +122,13 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             ->where('events.account_id', $accountId);
 
         $sortBy = $this->validateSortColumn($params->sort_by, OrderDomainObject::class);
-        $this->model = $this->model->orderBy(
-            column: 'orders.'.$sortBy,
-            direction: $this->validateSortDirection($params->sort_direction, OrderDomainObject::class),
-        );
+        $sortDirection = $this->validateSortDirection($params->sort_direction, OrderDomainObject::class);
+        $this->model = $this->model
+            ->orderBy(
+                column: 'orders.'.$sortBy,
+                direction: $sortDirection,
+            )
+            ->orderBy(self::ORDER_ID_TIE_BREAKER, $sortDirection);
 
         return $this->paginateWhere(
             where: $where,
@@ -255,7 +270,9 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         $sortColumn = in_array($sortBy, $allowedSortColumns, true) ? $sortBy : 'created_at';
         $sortDir = in_array(strtolower($sortDirection), ['asc', 'desc']) ? $sortDirection : 'desc';
 
-        $this->model = $this->model->orderBy('orders.'.$sortColumn, $sortDir);
+        $this->model = $this->model
+            ->orderBy('orders.'.$sortColumn, $sortDir)
+            ->orderBy(self::ORDER_ID_TIE_BREAKER, $sortDir);
 
         $this->loadRelation(new Relationship(EventDomainObject::class, nested: [
             new Relationship(AccountDomainObject::class, name: 'account'),
