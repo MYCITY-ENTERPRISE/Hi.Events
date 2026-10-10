@@ -13,7 +13,9 @@ return [
     'contract' => 1,
 
     // Optional capabilities of this instance, returned by GET /api-key.
-    'features' => [],
+    'features' => [
+        'authenticated_check_in',
+    ],
 
     // Routes any valid API key can call.
     'open_routes' => [
@@ -48,6 +50,9 @@ return [
 
         'GET events/{event_id}/check-in-lists' => ApiKeyAbility::CHECK_IN_LISTS_READ->value,
         'GET events/{event_id}/check-in-lists/{check_in_list_id}' => ApiKeyAbility::CHECK_IN_LISTS_READ->value,
+
+        'POST events/{event_id}/check-in-lists/{check_in_list_id}/check-ins' => ApiKeyAbility::CHECK_INS_WRITE->value,
+        'DELETE events/{event_id}/check-in-lists/{check_in_list_id}/check-ins/{check_in_short_id}' => ApiKeyAbility::CHECK_INS_WRITE->value,
 
         'GET events/{event_id}/stats' => ApiKeyAbility::REPORTS_READ->value,
         'GET events/{event_id}/counts' => ApiKeyAbility::REPORTS_READ->value,

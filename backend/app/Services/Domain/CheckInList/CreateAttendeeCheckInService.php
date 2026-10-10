@@ -49,7 +49,7 @@ class CreateAttendeeCheckInService
         $checkInList = $this->checkInListDataService->getCheckInList($checkInListUuid);
         $this->checkInListActivityValidator->assertActive($checkInList);
 
-        $attendees = $this->fetchAttendees($attendeesAndActions);
+        $attendees = $this->fetchAttendees($attendeesAndActions, $checkInList->getEventId());
         $eventSettings = $this->fetchEventSettings($checkInList->getEventId());
         $existingCheckIns = $this->fetchExistingCheckIns($attendees, $checkInList);
 
@@ -69,13 +69,13 @@ class CreateAttendeeCheckInService
      *
      * @throws CannotCheckInException
      */
-    private function fetchAttendees(Collection $attendeesAndActions): Collection
+    private function fetchAttendees(Collection $attendeesAndActions, int $eventId): Collection
     {
         $publicIds = $attendeesAndActions->map(
             fn (AttendeeAndActionDTO $attendeeAndAction) => $attendeeAndAction->public_id
         );
 
-        return $this->checkInListDataService->getAttendees($publicIds);
+        return $this->checkInListDataService->getAttendees($publicIds, $eventId);
     }
 
     private function fetchEventSettings(int $eventId): EventSettingDomainObject
@@ -118,6 +118,7 @@ class CreateAttendeeCheckInService
     ): CreateAttendeeCheckInsResponseDTO {
         $errors = new ErrorBagDTO;
         $checkIns = new Collection;
+        $createdCheckIns = new Collection;
 
         foreach ($attendees as $attendee) {
             $result = $this->processIndividualCheckIn(
@@ -132,6 +133,9 @@ class CreateAttendeeCheckInService
             if ($result->checkIn) {
                 $checkIns->push($result->checkIn);
             }
+            if ($result->checkIn && $result->created) {
+                $createdCheckIns->push($result->checkIn);
+            }
             if ($result->error) {
                 $errors->addError($attendee->getPublicId(), $result->error);
             }
@@ -140,6 +144,7 @@ class CreateAttendeeCheckInService
         return new CreateAttendeeCheckInsResponseDTO(
             attendeeCheckIns: $checkIns,
             errors: $errors,
+            createdCheckIns: $createdCheckIns,
         );
     }
 
@@ -188,7 +193,7 @@ class CreateAttendeeCheckInService
                     );
                 }
 
-                return new CheckInResultDTO(checkIn: $checkIn);
+                return new CheckInResultDTO(checkIn: $checkIn, created: true);
             });
         } catch (UniqueConstraintViolationException) {
             return new CheckInResultDTO(

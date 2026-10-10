@@ -87,7 +87,9 @@ use HiEvents\Http\Actions\CapacityAssignments\DeleteCapacityAssignmentAction;
 use HiEvents\Http\Actions\CapacityAssignments\GetCapacityAssignmentAction;
 use HiEvents\Http\Actions\CapacityAssignments\GetCapacityAssignmentsAction;
 use HiEvents\Http\Actions\CapacityAssignments\UpdateCapacityAssignmentAction;
+use HiEvents\Http\Actions\CheckInLists\CreateAttendeeCheckInAction;
 use HiEvents\Http\Actions\CheckInLists\CreateCheckInListAction;
+use HiEvents\Http\Actions\CheckInLists\DeleteAttendeeCheckInAction;
 use HiEvents\Http\Actions\CheckInLists\DeleteCheckInListAction;
 use HiEvents\Http\Actions\CheckInLists\GetCheckInListAction;
 use HiEvents\Http\Actions\CheckInLists\GetCheckInListsAction;
@@ -516,6 +518,8 @@ $router->middleware(['auth:api,sanctum', 'api-key.scope'])->group(
         $router->get('/events/{event_id}/check-in-lists/{check_in_list_id}', GetCheckInListAction::class);
         $router->put('/events/{event_id}/check-in-lists/{check_in_list_id}', UpdateCheckInListAction::class);
         $router->delete('/events/{event_id}/check-in-lists/{check_in_list_id}', DeleteCheckInListAction::class);
+        $router->post('/events/{event_id}/check-in-lists/{check_in_list_id}/check-ins', CreateAttendeeCheckInAction::class);
+        $router->delete('/events/{event_id}/check-in-lists/{check_in_list_id}/check-ins/{check_in_short_id}', DeleteAttendeeCheckInAction::class);
 
         // Webhooks
         $router->post('/events/{event_id}/webhooks', CreateWebhookAction::class);

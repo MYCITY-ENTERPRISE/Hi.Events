@@ -39,8 +39,9 @@ class CreateAttendeeCheckInPublicHandler
             'ip_address' => $checkInData->checkInUserIpAddress,
         ]);
 
+        // An attendee who was already checked in gets their existing check-in back: only new check-ins are announced.
         /** @var AttendeeCheckInDomainObject $checkIn */
-        foreach ($checkIns->attendeeCheckIns as $checkIn) {
+        foreach ($checkIns->createdCheckIns as $checkIn) {
             $this->domainEventDispatcherService->dispatch(
                 new CheckinEvent(
                     type: DomainEventType::CHECKIN_CREATED,

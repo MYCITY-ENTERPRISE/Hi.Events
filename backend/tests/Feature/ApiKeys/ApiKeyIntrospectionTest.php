@@ -28,7 +28,7 @@ class ApiKeyIntrospectionTest extends TestCase
         $response->assertJsonPath('data.account_id', $accountId);
         $response->assertJsonPath('data.app_version', trim(file_get_contents(base_path('VERSION'))));
         $response->assertJsonPath('data.api_key_contract', 1);
-        $response->assertJsonPath('data.features', []);
+        $response->assertJsonPath('data.features', config('api-keys.features'));
         $this->assertTrue($expiresAt->equalTo($response->json('data.expires_at')));
         $this->assertNotNull($response->json('data.last_used_at'));
         $this->assertArrayNotHasKey('token', $response->json('data'));
