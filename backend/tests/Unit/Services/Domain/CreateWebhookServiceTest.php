@@ -7,14 +7,11 @@ use HiEvents\DomainObjects\WebhookDomainObject;
 use HiEvents\Repository\Interfaces\WebhookRepositoryInterface;
 use HiEvents\Services\Domain\CreateWebhookService;
 use Mockery;
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Tests\TestCase;
 
 class CreateWebhookServiceTest extends TestCase
 {
-    use MockeryPHPUnitIntegration;
-
     private array $capturedAttributes = [];
 
     private CreateWebhookService $service;
