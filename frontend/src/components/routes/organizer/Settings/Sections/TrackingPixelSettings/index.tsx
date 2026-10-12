@@ -240,6 +240,7 @@ export const TrackingPixelSettings = () => {
                                         {...form.getInputProps(`pixels.${provider.key}.pixel_id`)}
                                         placeholder={provider.placeholder}
                                         size="sm"
+                                        data-testid={`tracking-pixel-id-input-${provider.key}`}
                                         description={hasValue ? provider.description : undefined}
                                         onChange={(e) => {
                                             form.setFieldValue(`pixels.${provider.key}.pixel_id`, e.currentTarget.value);
@@ -299,6 +300,7 @@ export const TrackingPixelSettings = () => {
                         loading={updateMutation.isPending}
                         type="submit"
                         mt="md"
+                        data-testid="tracking-pixels-save-button"
                     >
                         {t`Save`}
                     </Button>

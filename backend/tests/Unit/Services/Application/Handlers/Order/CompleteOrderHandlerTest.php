@@ -172,17 +172,15 @@ class CompleteOrderHandlerTest extends TestCase
 
         $this->orderRepository->shouldReceive('findByShortId')->with($orderShortId)->andReturn($this->createMockOrder());
         $this->orderRepository->shouldReceive('loadRelation')->andReturnSelf();
+        $storedAttributes = null;
         $this->orderRepository
             ->shouldReceive('updateFromArray')
             ->once()
-            ->with(1, Mockery::on(fn (array $attributes) => $attributes['ad_tracking_context'] === [
-                'fbp' => 'fb.1.1700000000000.123456',
-                'fbc' => null,
-                'event_source_url' => 'https://outkzt.events/checkout/1/ABC123/details',
-                'client_ip_address' => '203.0.113.7',
-                'client_user_agent' => 'Mozilla/5.0',
-            ]))
-            ->andReturn($this->createMockOrder());
+            ->andReturnUsing(function (int $orderId, array $attributes) use (&$storedAttributes) {
+                $storedAttributes = $attributes;
+
+                return $this->createMockOrder();
+            });
 
         $this->productPriceRepository->shouldReceive('findWhereIn')->andReturn(new Collection([$this->createMockProductPrice()]));
         $this->attendeeRepository->shouldReceive('insert')->andReturn(true);
@@ -191,6 +189,14 @@ class CompleteOrderHandlerTest extends TestCase
         $this->eventSettingsRepository->shouldReceive('findFirstWhere')->andReturn($this->createMockEventSetting());
 
         $this->completeOrderHandler->handle($orderShortId, $orderData);
+
+        $this->assertSame([
+            'fbp' => 'fb.1.1700000000000.123456',
+            'fbc' => null,
+            'event_source_url' => 'https://outkzt.events/checkout/1/ABC123/details',
+            'client_ip_address' => '203.0.113.7',
+            'client_user_agent' => 'Mozilla/5.0',
+        ], $storedAttributes['ad_tracking_context']);
     }
 
     public function test_handle_stores_unwrapped_order_answers_and_skips_blank_ones(): void

@@ -34,7 +34,7 @@ return [
     'meta' => [
         'graph_api_base_url' => env('META_GRAPH_API_BASE_URL', 'https://graph.facebook.com'),
         'graph_api_version' => env('META_GRAPH_API_VERSION', 'v23.0'),
-        'request_timeout_seconds' => (int) env('META_CONVERSIONS_API_REQUEST_TIMEOUT', 10),
+        'request_timeout_seconds' => (int) env('META_CONVERSIONS_API_REQUEST_TIMEOUT', 5),
     ],
 
     'stripe' => [

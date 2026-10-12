@@ -67,6 +67,30 @@ export class OrganizerPage {
     await this.walletPassSection.getByTestId('wallet-pass-submit-button').click();
   }
 
+  get trackingSection(): Locator {
+    return this.page.locator('#tracking-pixels');
+  }
+
+  get facebookPixelIdInput(): Locator {
+    return this.trackingSection.getByTestId('tracking-pixel-id-input-facebook_pixel');
+  }
+
+  get metaConversionsApiTokenInput(): Locator {
+    return this.trackingSection.getByLabel(/^Conversions API access token/);
+  }
+
+  get removeMetaConversionsApiTokenCheckbox(): Locator {
+    return this.trackingSection.getByLabel('Remove the saved access token');
+  }
+
+  get trackingConsentCheckbox(): Locator {
+    return this.trackingSection.getByLabel('I acknowledge my responsibilities as a data controller');
+  }
+
+  async saveTrackingSettings(): Promise<void> {
+    await this.trackingSection.getByTestId('tracking-pixels-save-button').click();
+  }
+
   reportRow(text: string): Locator {
     return this.page.getByRole('row').filter({ hasText: text });
   }

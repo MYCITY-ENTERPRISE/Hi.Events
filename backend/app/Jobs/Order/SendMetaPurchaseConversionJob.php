@@ -9,22 +9,32 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Psr\Log\LoggerInterface;
 
 class SendMetaPurchaseConversionJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public int $tries = 3;
+    private const RETRY_DELAYS_SECONDS = [60, 300];
 
-    public array $backoff = [60, 300];
+    public int $tries = 3;
 
     public function __construct(public readonly int $orderId) {}
 
-    /**
-     * @throws MetaConversionsApiException
-     */
-    public function handle(MetaPurchaseConversionService $service): void
+    public function handle(MetaPurchaseConversionService $service, LoggerInterface $logger): void
     {
-        $service->sendPurchase($this->orderId);
+        try {
+            $service->sendPurchase($this->orderId);
+        } catch (MetaConversionsApiException $exception) {
+            $logger->warning('Meta Conversions API purchase could not be sent', [
+                'order_id' => $this->orderId,
+                'attempt' => $this->attempts(),
+                'error' => $exception->getMessage(),
+            ]);
+
+            if ($this->attempts() < $this->tries) {
+                $this->release(self::RETRY_DELAYS_SECONDS[$this->attempts() - 1]);
+            }
+        }
     }
 }

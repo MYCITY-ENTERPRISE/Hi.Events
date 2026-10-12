@@ -174,6 +174,12 @@ export class ApiClient {
     return this.setEventStatus(eventId, 'LIVE');
   }
 
+  getOrganizerSettings(organizerId: number): Promise<Record<string, unknown>> {
+    return unwrap<Record<string, unknown>>(
+      this.request.get(`organizers/${organizerId}/settings`, { headers: jsonHeaders }),
+    );
+  }
+
   getEventSettings(eventId: number): Promise<EventSettings> {
     return unwrap<EventSettings>(this.request.get(`events/${eventId}/settings`, { headers: jsonHeaders }));
   }

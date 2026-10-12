@@ -342,8 +342,7 @@ class CompleteOrderHandler
         OrderDomainObject $order,
         CompleteOrderOrderDTO $orderDTO,
         ?AdTrackingContextDTO $adTrackingContext,
-    ): OrderDomainObject
-    {
+    ): OrderDomainObject {
         $updatedOrder = $this->orderRepository
             ->loadRelation(OrderItemDomainObject::class)
             ->updateFromArray(
