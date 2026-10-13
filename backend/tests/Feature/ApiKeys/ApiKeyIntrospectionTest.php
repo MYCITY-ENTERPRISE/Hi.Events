@@ -47,4 +47,20 @@ class ApiKeyIntrospectionTest extends TestCase
     {
         $this->getJson('/api-key')->assertStatus(ResponseCodes::HTTP_UNAUTHORIZED);
     }
+
+    public function test_the_instance_declares_webhook_delivery_id(): void
+    {
+        $this->assertInstanceDeclaresFeature('webhook_delivery_id');
+    }
+
+    private function assertInstanceDeclaresFeature(string $feature): void
+    {
+        $this->seedAccountConfiguration();
+        [$admin, $accountId] = $this->makeAccountWithAdmin();
+        $key = $this->makeApiKey($admin, $accountId, ['events:read']);
+
+        $this->getJson('/api-key', $this->bearer($key))
+            ->assertStatus(ResponseCodes::HTTP_OK)
+            ->assertJsonPath('data.features', fn (array $features) => in_array($feature, $features, true));
+    }
 }

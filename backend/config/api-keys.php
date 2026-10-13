@@ -8,6 +8,7 @@ return [
 
     'features' => [
         'authenticated_check_in',
+        'webhook_delivery_id',
     ],
 
     'open_routes' => [
