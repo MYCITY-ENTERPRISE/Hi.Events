@@ -53,6 +53,11 @@ class ApiKeyIntrospectionTest extends TestCase
         $this->assertInstanceDeclaresFeature('webhook_delivery_id');
     }
 
+    public function test_the_instance_declares_attendee_webhooks_complete(): void
+    {
+        $this->assertInstanceDeclaresFeature('attendee_webhooks_complete');
+    }
+
     private function assertInstanceDeclaresFeature(string $feature): void
     {
         $this->seedAccountConfiguration();

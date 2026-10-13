@@ -9,6 +9,7 @@ return [
     'features' => [
         'authenticated_check_in',
         'webhook_delivery_id',
+        'attendee_webhooks_complete',
     ],
 
     'open_routes' => [
