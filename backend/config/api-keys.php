@@ -10,6 +10,9 @@ return [
         'authenticated_check_in',
         'webhook_delivery_id',
         'attendee_webhooks_complete',
+        'orders_updated_at',
+        'orders_stable_sort',
+        'attendees_stable_sort',
     ],
 
     'open_routes' => [

@@ -58,6 +58,21 @@ class ApiKeyIntrospectionTest extends TestCase
         $this->assertInstanceDeclaresFeature('attendee_webhooks_complete');
     }
 
+    public function test_the_instance_declares_orders_updated_at(): void
+    {
+        $this->assertInstanceDeclaresFeature('orders_updated_at');
+    }
+
+    public function test_the_instance_declares_orders_stable_sort(): void
+    {
+        $this->assertInstanceDeclaresFeature('orders_stable_sort');
+    }
+
+    public function test_the_instance_declares_attendees_stable_sort(): void
+    {
+        $this->assertInstanceDeclaresFeature('attendees_stable_sort');
+    }
+
     private function assertInstanceDeclaresFeature(string $feature): void
     {
         $this->seedAccountConfiguration();
